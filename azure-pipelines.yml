@@ -1,0 +1,73 @@
+pool:
+  name: Azure Pipelines
+
+resources:
+  repositories:
+  - repository: bcrm_common
+    type: bitbucket
+    endpoint: Bitbucket - Prasoplap
+    name: ChocoCRM-BCRM/BCRM-Common
+    ref: Development
+
+  - repository: bcrm_logging
+    type: bitbucket
+    endpoint: Bitbucket - Prasoplap
+    name: ChocoCRM-BCRM/BCRM-Logging
+    ref: Dev-Stable
+
+variables:
+- name: BuildConfiguration
+  value: 'Release'
+
+- name: BuildPlatform
+  value: 'any cpu'
+
+- name: system.debug
+  value: 'false'
+
+steps:
+- checkout: self
+- checkout: bcrm_common
+- checkout: bcrm_logging
+
+- script: dir $(Build.SourcesDirectory)
+
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk 5.0.x'
+  inputs:
+    version: '5.0.x'
+    includePreviewVersions: true
+
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+    projects: '**/*[Tt]ests/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Publish
+  inputs:
+    command: publish
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: '$(Parameters.ArtifactName)'
+  condition: succeededOrFailed()
+
