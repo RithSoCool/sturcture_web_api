@@ -4,7 +4,7 @@ using BCRM.Common.Extensions;
 using BCRM.Common.Helpers;
 using BCRM.Logging;
 using BCRM.Logging.Extension;
-using BCRM_App.Areas.Api;
+//using BCRM_App.Areas.Api;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -88,10 +88,10 @@ namespace BCRM_App
             App_Setting.Load_Configs(services);
 
             // Register BCRM Database (All Brands)
-            services.Register_Database();
+            //services.Register_Database();
 
             // Register Authen Internal Service (All Brands)
-            services.Register_Authen_Internal_Service();
+            //services.Register_Authen_Internal_Service();
 
             // Register SMS Service
             services.Add_SMS_Client_Service();
@@ -106,16 +106,16 @@ namespace BCRM_App
             services.AddBCRM_Privilege(Configuration);
 
             // Register SMS Internal Service (All Brands)
-            services.Register_SMS_Internal_Service();
+            //services.Register_SMS_Internal_Service();
 
             // Register Repository Service
-            services.Register_BCRM_Internal_Service();
+            //services.Register_BCRM_Internal_Service();
 
             // BCRM - Line Flex Message
             services.Add_Line_Client_Service();
 
             // BCRM - Line Flex Message Template Builder
-            services.AddScoped<FlexMessageBuilder>();
+            //services.AddScoped<FlexMessageBuilder>();
 
 
             // BCRM - Logging
@@ -181,15 +181,15 @@ namespace BCRM_App
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                // Area - Api
-                BCRM_App_Api_RouteConfig.Config(endpoints);
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    // Area - Api
+            //    BCRM_App_Api_RouteConfig.Config(endpoints);
 
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
     }
 }

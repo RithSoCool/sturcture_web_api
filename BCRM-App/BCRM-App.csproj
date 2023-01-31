@@ -1,27 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>BCRM_App</RootNamespace>
     <LangVersion>latest</LangVersion>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Areas\Api\Data\**" />
-    <Compile Remove="Areas\Api\Services\Point\**" />
-    <Compile Remove="Areas\Api\Views\**" />
-    <Content Remove="Areas\Api\Data\**" />
-    <Content Remove="Areas\Api\Services\Point\**" />
-    <Content Remove="Areas\Api\Views\**" />
-    <EmbeddedResource Remove="Areas\Api\Data\**" />
-    <EmbeddedResource Remove="Areas\Api\Services\Point\**" />
-    <EmbeddedResource Remove="Areas\Api\Views\**" />
-    <None Remove="Areas\Api\Data\**" />
-    <None Remove="Areas\Api\Services\Point\**" />
-    <None Remove="Areas\Api\Views\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.9.0" />
@@ -52,6 +37,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\" />
+    <Folder Include="Models\DBModels\" />
+    <Folder Include="Models\MapperConfigs\" />
+    <Folder Include="Models\StoredProcedures\" />
     <Folder Include="Services\RemoteExternal\" />
   </ItemGroup>
 

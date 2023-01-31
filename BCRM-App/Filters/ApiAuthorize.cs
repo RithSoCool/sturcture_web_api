@@ -14,7 +14,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using DuchmillModel = BCRM_App.Models.DBModels.Duchmill;
+//using DuchmillModel = BCRM_App.Models.DBModels.Duchmill;
 
 namespace BCRM_App.Filters
 {
