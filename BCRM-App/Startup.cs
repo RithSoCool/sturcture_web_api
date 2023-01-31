@@ -26,6 +26,7 @@ using Microsoft.AspNetCore.Http;
 using BCRM.Common.Services.Data;
 using BCRM.Portable.Services.RemoteExternal.LineFlexMessage.Models;
 using BCRM.Portable.Services.RemoteExternal.LineFlexMessage;
+using BCRM_App.Areas.Api;
 
 namespace BCRM_App
 {
@@ -181,15 +182,15 @@ namespace BCRM_App
 
             app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    // Area - Api
-            //    BCRM_App_Api_RouteConfig.Config(endpoints);
+            app.UseEndpoints(endpoints =>
+            {
+                // Area - Api
+                BCRM_App_Api_RouteConfig.Config(endpoints);
 
-            //    endpoints.MapControllerRoute(
-            //        name: "default",
-            //        pattern: "{controller=Home}/{action=Index}/{id?}");
-            //});
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

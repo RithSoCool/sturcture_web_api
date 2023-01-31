@@ -37,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\" />
+    <Folder Include="Areas\Api\Controllers\" />
     <Folder Include="Models\DBModels\" />
     <Folder Include="Models\MapperConfigs\" />
     <Folder Include="Models\StoredProcedures\" />
